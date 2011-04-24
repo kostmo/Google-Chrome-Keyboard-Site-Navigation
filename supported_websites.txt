@@ -1,0 +1,16 @@
+This list reflects support as of 4/23/2011.
+
+Pester the website admin if they do not support this extension.  If they already have clickable "next" and "previous" buttons", it involves only a trivial change to the HTML on their website!
+
+
+SUPPORTED WEBSITES:
+=======================
+* Wordpress blogs
+* Vanilla Forums
+* http://www.reddit.com/
+* http://wikipedia.org/
+
+
+UNSUPPORTED WEBSITES:
+=======================
+* http://thedailywtf.com

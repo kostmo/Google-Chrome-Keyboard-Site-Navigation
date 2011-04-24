@@ -1,5 +1,25 @@
+INSTALLATION
+===============================================================================
+
 To install from source, follow step 4 on this page:
 https://code.google.com/chrome/extensions/getstarted.html
 
 Otherwise, just install the extension directly from the Chrome web store:
 https://chrome.google.com/webstore/detail/pkjjfohgdkeomfgelibonoddaaioaopg
+
+
+SUPPORT
+===============================================================================
+
+See the files "supported_webcomics.txt" and "supported_websites.txt" for a list of sites that allow this extension to work by using the HTML5 "link relations" attributes.
+
+
+ISSUES
+===============================================================================
+
+Potentially a website might list multiple "next" or "prev" relations on a page. This may call for a special indicator in the icon.
+
+As one example, check out this page:
+http://www.nuklearpower.com/2010/06/01/the-epilogue/
+
+If you navigate forward, you will reach the next blog entry. If you then navigate backward, you will not return to the last panel of the webcomic, but will instead reach the previous blog entry by date.

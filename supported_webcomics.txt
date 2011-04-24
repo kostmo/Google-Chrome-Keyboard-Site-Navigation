@@ -1,0 +1,25 @@
+This list reflects support as of 4/23/2011.
+
+Pester the webcomic author if they do not support this extension.  If they already have clickable "next" and "previous" buttons", it involves only a trivial change to the HTML on their website!
+
+
+SUPPORTED WEBCOMICS:
+=======================
+* http://www.qwantz.com/ (Dinosaur Comics)
+* http://nedroid.com/
+* http://doctorcatmd.com/
+* http://www.nuklearpower.com/2001/03/02/episode-001-were-going-where/ (8-Bit Theater)
+* http://www.spaceavalanche.com/2009/02/02/irish-sea/
+* http://thedevilspanties.com/
+
+UNSUPPORTED WEBCOMICS:
+=======================
+* http://www.cad-comic.com/cad (Ctrl-Alt-Del)
+* http://oglaf.com/
+* http://www.dilbert.com/
+* https://xkcd.com/
+* http://www.smbc-comics.com/
+* http://www.sinfest.net/
+* http://www.explosm.net/comics (Cyanide & Happiness)
+* http://www.phdcomics.com/comics
+* http://www.penny-arcade.com/comic/
