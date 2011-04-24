@@ -1,0 +1,25 @@
+{
+  "name" : "Keyboard Site Navigation",
+  "version" : "1.0",
+  "description" : "Enables keyboard shortcuts for pages that define \"next\" or \"previous\" relations.",
+  "background_page" : "background.html",
+  "page_action" :
+  {
+    "default_icon" : "icons/both_prev_next.png",
+    "default_title" : "Site navigation via arrow keys is available."
+  },
+  "content_scripts" : [
+    {
+      "matches" : [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js" : ["contentscript.js"],
+      "run_at" : "document_idle",
+      "all_frames" : false
+    }
+  ],
+  "icons" : {
+    "128" : "icons/icon-128.png"
+  }
+}
