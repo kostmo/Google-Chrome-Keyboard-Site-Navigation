@@ -12,9 +12,9 @@
         chrome.pageAction.show(sender.tab.id);
 
 	var icon_filename = "both_prev_next";
-	if (!request["next"])
+	if (!request["next"].length)
 		icon_filename = "prev_only";
-	else if (!request["prev"])
+	else if (!request["prev"].length)
 		icon_filename = "next_only";
 
 	chrome.pageAction.setIcon({"path": "icons/" + icon_filename + ".png", "tabId": sender.tab.id})

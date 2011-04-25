@@ -1,8 +1,9 @@
 {
-  "name" : "Keyboard Site Navigation",
-  "version" : "1.0",
+  "name" : "Keyboard Site Navigation (and Webcomic Browser)",
+  "version" : "1.1",
   "description" : "Enables keyboard shortcuts for pages that define \"next\" or \"previous\" relations.",
   "background_page" : "background.html",
+  "options_page": "options.html",
   "page_action" :
   {
     "default_icon" : "icons/both_prev_next.png",

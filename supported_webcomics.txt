@@ -1,25 +1,52 @@
 This list reflects support as of 4/23/2011.
 
-Pester the webcomic author if they do not support this extension.  If they already have clickable "next" and "previous" buttons", it involves only a trivial change to the HTML on their website!
+If your favorite webcomic is not supported, send a note to the webcomic author.
+If they already have clickable "next" and "previous" buttons", it involves only
+a trivial change to the HTML on their website!
 
 
 SUPPORTED WEBCOMICS:
-=======================
+====================
 * http://www.qwantz.com/ (Dinosaur Comics)
 * http://nedroid.com/
 * http://doctorcatmd.com/
 * http://www.nuklearpower.com/2001/03/02/episode-001-were-going-where/ (8-Bit Theater)
 * http://www.spaceavalanche.com/2009/02/02/irish-sea/
 * http://thedevilspanties.com/
+* http://www.irregularwebcomic.net/
+* http://www.gpf-comics.com/ (General Protection Fault)
+* http://drmcninja.com/archives/comic/0p1 (Dr. McNinja)
+* http://buttersafe.com/
 
 UNSUPPORTED WEBCOMICS:
-=======================
-* http://www.cad-comic.com/cad (Ctrl-Alt-Del)
+======================
+* http://www.penny-arcade.com/comic/
+* http://megatokyo.com/strip/1304
+* http://www.explosm.net/comics (Cyanide & Happiness)
+* http://www.phdcomics.com/comics
 * http://oglaf.com/
 * http://www.dilbert.com/
 * https://xkcd.com/
 * http://www.smbc-comics.com/
 * http://www.sinfest.net/
-* http://www.explosm.net/comics (Cyanide & Happiness)
-* http://www.phdcomics.com/comics
-* http://www.penny-arcade.com/comic/
+* http://www.cad-comic.com/cad (Ctrl-Alt-Del)
+* http://theoatmeal.com/
+* http://www.pbfcomics.com/ (The Perry Bible Fellowship)
+* http://www.harkavagrant.com/
+* http://www.viruscomix.com/subnormality.html
+* http://alienlovespredator.com/
+* http://www.scarygoround.com/sgr/
+* http://www.explodingdog.com/
+* http://www.electricretard.com/
+* http://garfieldminusgarfield.net/
+* http://www.daisyowl.com/
+* http://www.captainexcelsior.com/
+
+UNSUPPORTED WEBCOMICS (PRECLUDED BY SITE DESIGN):
+=================================================
+* http://www.creasedcomics.com/archive.php?page=1 (Brad Neely)
+* http://www.toothpastefordinner.com/
+* http://www.nataliedee.com/
+* http://www.marriedtothesea.com/
+* http://www.superpoop.com/
+

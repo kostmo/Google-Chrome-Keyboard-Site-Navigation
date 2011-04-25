@@ -1,0 +1,45 @@
+<html>
+<head><title>Keyboard Site Navigation Options</title></head>
+<style type="text/css">
+body {font-family: sans-serif}
+</style>
+<script type="text/javascript">
+
+// Saves options to localStorage.
+function save_options() {
+  var checkbox = document.getElementById("find_multiple_targets");
+  var find_multiple_targets = checkbox.checked;
+  localStorage["find_multiple_targets"] = find_multiple_targets;
+
+  // Update status to let user know options were saved.
+  var status = document.getElementById("status");
+  status.innerHTML = "Options Saved.";
+  setTimeout(function() {
+    status.innerHTML = "";
+  }, 750);
+}
+
+// Restores checkbox state to saved value from localStorage.
+function restore_options() {
+  var find_multiple_targets = localStorage["find_multiple_targets"];
+
+  var checkbox = document.getElementById("find_multiple_targets");
+  checkbox.checked = find_multiple_targets;
+}
+
+</script>
+
+<body onload="restore_options()">
+
+<h1>Options</h1>
+<label><input type="checkbox" id="find_multiple_targets" />Allow searching for multiple next/prev targets (not currently used)</label>
+<br>
+<button onclick="save_options()">Save</button>
+
+<h1>List of Supported and Unsupported Sites</h1>
+<ul>
+<li><a href="https://github.com/kostmo/Google-Chrome-Keyboard-Site-Navigation/raw/master/supported_webcomics.txt">Web comics</a></li>
+<li><a href="https://github.com/kostmo/Google-Chrome-Keyboard-Site-Navigation/raw/master/supported_websites.txt">Other websites</a></li>
+</ul>
+</body>
+</html>
