@@ -1,5 +1,5 @@
 {
-  "name" : "Keyboard Site Navigation (and Webcomic Browser)",
+  "name" : "Keyboard Site Navigation and Webcomic Browser",
   "version" : "1.1",
   "description" : "Enables keyboard shortcuts for pages that define \"next\" or \"previous\" relations.",
   "background_page" : "background.html",
