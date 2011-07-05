@@ -3,6 +3,10 @@
 <style type="text/css">
 body {font-family: sans-serif}
 </style>
+
+<script type="text/javascript" src="link_finders.js"></script>
+<script type="text/javascript" src="website_overrides.js"></script>
+
 <script type="text/javascript">
 
 // Saves options to localStorage.
@@ -19,6 +23,7 @@ function save_options() {
   }, 750);
 }
 
+
 // Restores checkbox state to saved value from localStorage.
 function restore_options() {
   var find_multiple_targets = localStorage["find_multiple_targets"];
@@ -27,9 +32,31 @@ function restore_options() {
   checkbox.checked = find_multiple_targets;
 }
 
+
+function list_manually_supported_comics() {
+	var container = document.getElementById("manual_support_list");
+
+	var html = "";
+	html += "<ul>";
+	for (var override_website in manual_site_overrides) {
+//		var link_finder = manual_site_overrides[override_website];
+		html += "<li><a href=\"" + override_website + "\">" + override_website + "</a></li>";
+	}
+	html += "</ul>";
+
+	container.innerHTML = html;
+}
+
+
+function init() {
+	restore_options();
+	list_manually_supported_comics();
+}
+
+
 </script>
 
-<body onload="restore_options()">
+<body onload="init()">
 
 <h1>Options</h1>
 <label><input type="checkbox" id="find_multiple_targets" />Allow searching for multiple next/prev targets (not currently used)</label>
@@ -41,5 +68,9 @@ function restore_options() {
 <li><a href="https://github.com/kostmo/Google-Chrome-Keyboard-Site-Navigation/raw/master/supported_webcomics.txt">Web comics</a></li>
 <li><a href="https://github.com/kostmo/Google-Chrome-Keyboard-Site-Navigation/raw/master/supported_websites.txt">Other websites</a></li>
 </ul>
+
+<h1>Manually-supported Sites</h1>
+<span id="manual_support_list"></span>
+
 </body>
 </html>

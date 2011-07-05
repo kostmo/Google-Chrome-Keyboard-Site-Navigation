@@ -15,7 +15,7 @@
         "http://*/*",
         "https://*/*"
       ],
-      "js" : ["contentscript.js"],
+      "js" : ["link_finders.js", "website_overrides.js", "contentscript.js"],
       "run_at" : "document_idle",
       "all_frames" : false
     }

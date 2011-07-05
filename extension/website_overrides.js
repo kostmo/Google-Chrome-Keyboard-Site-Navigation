@@ -1,0 +1,68 @@
+var manual_site_overrides = {
+	"http://www.penny-arcade.com/comic/": new TextLinkFinder("Back", "Next"),
+	"http://theoatmeal.com/": new TextLinkFinder(null, "Next Page »"),	// Semi-supported
+	"http://megatokyo.com/strip/": new TextLinkFinder("Prev", "Next"),
+	"https://xkcd.com/": new TextLinkFinder("< Prev", "Next >"),
+	"http://asofterworld.com/": new TextLinkFinder("back", "next"),
+	"http://www.cad-comic.com/cad": new TextLinkFinder("Back", "Next"),
+	"http://www.pbfcomics.com/": new TextLinkFinder("Older", "Newer"),
+	"http://www.scarygoround.com/sgr/": new TextLinkFinder("Previous", "Next"),
+	"http://garfieldminusgarfield.net/": new TextLinkFinder("Older Comics", "Newer Comics"),
+	"http://www.daisyowl.com/": new TextLinkFinder("Prev", "Next"),
+	"http://70-seas.com/": new TextLinkFinder("‹ Previous", "Next ›"),
+	"http://achewood.com/": new TextLinkFinder("«", "»"),
+	"http://www.asciiartfarts.com/": new TextLinkFinder("backward one day", "forward one day"),
+	"http://www.buttercupfestival.com/": new TextLinkFinder("previous", "next"),
+	"http://www.comics.chickennation.com/hilarity-comics/": new TextLinkFinder("‹ Previous", "Next ›"),
+	"http://www.doghatesme.com/": new TextLinkFinder("older »", "« newer"),
+	"http://pinksnowbunny.com/": new TextLinkFinder("< prev ", "next >"),
+	"http://www.kiwisbybeat.com/": new TextLinkFinder("previous", "next"),
+	"http://ghostcarpress.com/inkdick/": new TextLinkFinder("◄ Previous", "Next ►"),
+	"http://www.studiojfish.com/darkrainbow/": new TextLinkFinder("PREVIOUS PAGE", "NEXT PAGE"),
+	"https://www.jerkcity.com/": new TextLinkFinder("Previous", "Next"),
+	"http://www.johnnywander.com/": new TextLinkFinder("prev", "next"),
+	"http://monsterkillers.com/": new TextLinkFinder("<-", "->"),
+	"http://lr-comic.com/": new TextLinkFinder("PREV", "NEXT"),
+	"http://overcompensating.com/": new TextLinkFinder("<-", "->"),
+	"http://realcanesugar.cc/": new TextLinkFinder("‹ Previous", "Next ›"),	// Contains rel tags, but functions differently than explicit buttons (includes blog posts)
+	"http://willlaren.blogspot.com/": new TextLinkFinder("Older Posts", "Newer Posts"),
+	"http://blog.trubbleclub.com/": new TextLinkFinder("Older Posts", "Newer Posts"),
+	"http://www.flickr.com/photos/": new TextLinkFinder("← prev", "next →"),
+	"http://www.rice-boy.com/": new TextLinkFinder("back", "forward"),
+	"http://www.manateepower.com/": new TextLinkFinder("Previous", "Next"),	// Contains rel tags, but functions differently than explicit buttons
+	"http://questionduck.smackjeeves.com/": new TextLinkFinder("< PREV", "NEXT >"),
+	"http://www.drawbrandondraw.com/": new TextLinkFinder("< previous", "next >"),
+	"http://noncanon.com/": new TextLinkFinder("Previous", "Next"),
+	"http://www.sorcery101.net/": new TextLinkFinder("‹ Previous", "Next ›"),	// Contains rel tags, but functions differently than explicit buttons
+
+
+	"http://www.doublefine.com/comics/": new ImageLinkFinder("/themes/site_themes/sideshow/_i/ads/cmcv/b_prev.gif", "/themes/site_themes/sideshow/_i/ads/cmcv/b_next.gif"),
+	"http://threewordphrase.com/": new ImageLinkFinder("/prevlink.gif", "/nextlink.gif"),
+	"http://www.supermegacomics.com/": new ImageLinkFinder("bigbuttonprevious.png", "bigbuttonnext.png"),
+	"http://www.perfectstars.com/": new ImageLinkFinder("http://www.perfectstars.com/layout/navbar/previous.png", "http://www.perfectstars.com/layout/navbar/next.png"),
+	"http://picturesforsadchildren.com/": new ImageLinkFinder("images/back.gif", "images/next.gif"),
+	"http://www.gunnerkrigg.com/": new ImageLinkFinder("images/prev_a.jpg", "images/next_a.jpg"),
+	"http://gastrophobia.com/": new ImageLinkFinder("pix/prev.gif", "pix/next.gif"),
+	"http://dresdencodak.com/": new ImageLinkFinder("http://dresdencodak.com/m_prev.png", "http://dresdencodak.com/m_next.png"),
+	"http://dawnoftimecomics.com/": new ImageLinkFinder("images/nav_prev.png", "images/nav_next.png"),
+	"http://awkwardzombie.com/": new ImageLinkFinder("images/aznavb2.png", "images/aznavb4.png"),
+	"http://www.americanelf.com/": new ImageLinkFinder("http://www.webcomicsnation.com/users/americanelf/buttons_and_logos/previous.gif", "http://www.webcomicsnation.com/users/americanelf/buttons_and_logos/next.gif"),
+	"http://gunshowcomic.com/": new ImageLinkFinder("menu/small/previous.gif", "menu/small/next.gif"),
+	"http://alienlovespredator.com/": new ImageLinkFinder("/images/nav_previous.jpg", "/images/nav_next.jpg"),
+	"http://www.captainexcelsior.com/": new ImageLinkFinder("nav/NAV_previous.png", "nav/NAV_next.png"),
+	"http://www.explodingdog.com/": new ImageLinkFinder(null, new RegExp("/drawing/")),	// Semi-supported
+	"http://www.phdcomics.com/comics": new ImageLinkFinder("images/prev_button.gif", "images/next_button.gif"),
+	"http://www.dilbert.com/fast/": new ImageLinkFinder("/img/v1/blog/btn.left_arrow.gif", "/img/v1/blog/btn.right_arrow.gif"),
+	"http://www.sinfest.net/": new ImageLinkFinder("images/prev_a.gif", "images/next_a.gif"),
+	"http://www.harkavagrant.com/": new ImageLinkFinder("buttonprevious.png", "buttonnext.png"),
+	"http://www.viruscomix.com/": new ImageLinkFinder("subprevious.gif", "subnext.gif"),
+	"http://www.plasticbrickautomaton.com/": new ImageLinkFinder("images/back.png", "images/next.png"),
+	"http://www.electricretard.com/": new ImageLinkFinder("http://www.electricretard.com/images/button_previous_off.png", "http://www.electricretard.com/images/button_next_off.png"),
+
+	"http://www.smbc-comics.com/": new ImageMapLinkFinder("131,13,216,84", "351,21,425,87"),
+
+
+	"http://www.lefthandedtoons.com/": new HtmlLinkFinder('<span class="allthewayleft">Previous Comic</span>', '<span class="allthewayleft">Next Comic</span>'),
+	"http://oglaf.com/": new HtmlLinkFinder('<div id="pvs" class="nav_ro">', '<div id="nx" class="nav_ro">'),
+	"http://deadwinter.cc/": new HtmlLinkFinder("<span>Previous</span>", "<span>Next</span>"),
+}

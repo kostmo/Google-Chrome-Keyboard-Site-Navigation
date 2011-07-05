@@ -1,11 +1,11 @@
-This list reflects support as of 4/23/2011.
+This list reflects support as of 7/4/2011.
 
 If your favorite webcomic is not supported, send a note to the webcomic author.
 If they already have clickable "next" and "previous" buttons", it involves only
 a trivial change to the HTML on their website!
 
 
-SUPPORTED WEBCOMICS:
+INHERENTLY SUPPORTED WEBCOMICS (using the "rel" attribute):
 ====================
 * http://www.qwantz.com/ (Dinosaur Comics)
 * http://nedroid.com/
@@ -17,12 +17,41 @@ SUPPORTED WEBCOMICS:
 * http://www.gpf-comics.com/ (General Protection Fault)
 * http://drmcninja.com/archives/comic/0p1 (Dr. McNinja)
 * http://buttersafe.com/
+* http://www.meekcomic.com/
+* http://www.explosm.net/comics (Cyanide & Happiness)
+* http://midnitesurprise.com/
+* http://anderslovesmaria.reneengstrom.com/ (anders loves maria)
+* http://sofarapart.com/
+* http://www.bobwhitecomics.com/
+* http://thebrainseed.com/brightleaf/
+* http://thebrainseed.com/odyssey/
+* http://catandgirl.com/
+* http://www.catrackham.com/
+* http://chainsawsuit.com/
+* http://jessfink.com/Chester5000XYV/
+* http://dcisgoingtohell.com/
+* http://thechipperwhale.com/
+* http://kinokofry.com/
+* http://www.lovemenicecomic.com/
+* http://www.pvponline.com/
+* http://realcanesugar.cc/
+* https://quincyquarks.wordpress.com/
+* http://templaraz.com/
+* http://www.abominable.cc/
+* http://www.dharbin.com/
+* http://www.intrepidgirlbot.com/
+* http://www.agreeablecomics.com/loneliestastronauts/
+* http://threepanelsoul.com/
+* http://www.tinykittenteeth.com/
+* http://wondermark.com/
+* http://www.sintitulocomic.com/
+* http://kafkaskoffee.com/
+* http://amultiverse.com/
 
-UNSUPPORTED WEBCOMICS:
+MANUALLY SUPPORTED WEBCOMICS:
 ======================
 * http://www.penny-arcade.com/comic/
-* http://megatokyo.com/strip/1304
-* http://www.explosm.net/comics (Cyanide & Happiness)
+* http://megatokyo.com/strip/1
 * http://www.phdcomics.com/comics
 * http://oglaf.com/
 * http://www.dilbert.com/
@@ -41,6 +70,16 @@ UNSUPPORTED WEBCOMICS:
 * http://garfieldminusgarfield.net/
 * http://www.daisyowl.com/
 * http://www.captainexcelsior.com/
+* http://www.plasticbrickautomaton.com
+* http://gunshowcomic.com/
+
+UNSUPPORTED WEBCOMICS:
+=================================================
+* http://fanboys-online.com/
+* http://lucid-tv.com/
+* http://mspaintadventures.com/
+* http://octopuspie.com/
+* http://lamezone.net/
 
 UNSUPPORTED WEBCOMICS (PRECLUDED BY SITE DESIGN):
 =================================================

@@ -7,17 +7,23 @@
       // wants to show the page action.
       function onRequest(request, sender, sendResponse) {
 
-        // Show the page action for the tab that the sender (content script)
-        // was on.
-        chrome.pageAction.show(sender.tab.id);
+	var recognition_type = request["recognition_type"];
+	var navigation_options = request["navigation_options"];
 
 	var icon_filename = "both_prev_next";
-	if (!request["next"].length)
+	if (!navigation_options["next"].length)
 		icon_filename = "prev_only";
-	else if (!request["prev"].length)
+	else if (!navigation_options["prev"].length)
 		icon_filename = "next_only";
 
+	if (recognition_type == "manual")
+		icon_filename += "_manual";
+
 	chrome.pageAction.setIcon({"path": "icons/" + icon_filename + ".png", "tabId": sender.tab.id})
+
+        // Show the page action for the tab that the sender (content script) was on.
+        chrome.pageAction.show(sender.tab.id);
+
 
         // Return nothing to let the connection be cleaned up.
         sendResponse({});
