@@ -12,16 +12,21 @@ function TextLinkFinder(prev_text, next_text) {
 		return prev_next_urls_dict;
 	}
 
-	this.find_direction_link = function(direction_designator, subject_element) {
-		var anchor_tags = document.getElementsByTagName( subject_element );
-		for (var i=0; i<anchor_tags.length; i++) {
-			var anchor_tag = anchor_tags[i];
+
+	this.find_link = function(direction_designator, subject_element) {
+		var target_tags = document.getElementsByTagName( subject_element );
+		for (var i=0; i<target_tags.length; i++) {
+			var anchor_tag = target_tags[i];
 			var pattern = this.navigation_patterns[direction_designator];
 
 			// XXX Note the extra check for whether the "href" attribute is empty/null
 			if (this.isPatternMatch(anchor_tag, pattern) && anchor_tag.getAttribute("href"))
 				return anchor_tag.getAttribute("href");
 		}
+	}
+
+	this.find_direction_link = function(direction_designator, subject_element) {
+		return this.find_link(direction_designator, subject_element);
 	}
 
 	this.getSubjectText = function(element) {
@@ -78,20 +83,9 @@ LinkRelationFinder.prototype.find_direction_link = function(direction_designator
 
 	// Search through the relevant tags to find the "rel" attribute with a value of "next" or "prev"
 	var qualifying_tags = ["link", "a", "area"];	// see http://www.whatwg.org/specs/web-apps/current-work/multipage/links.html#linkTypes
-
 	for (var j=0; j<qualifying_tags.length; j++) {
-		var tag_name = qualifying_tags[j];
-
-//		return LinkRelationFinder.base.find_direction_link.call(this, direction_designator, tag_name);
-//		return TextLinkFinder.find_direction_link.call(this, direction_designator, tag_name);
-
-		var qualifying_tag_elements = document.getElementsByTagName( tag_name );
-		for (var i=0; i<qualifying_tag_elements.length; i++) {
-			var qualifying_tag_element = qualifying_tag_elements[i];
-			var rel_attribute = this.getSubjectText(qualifying_tag_element);
-			if (this.navigation_patterns[direction_designator].test(rel_attribute))
-				return qualifying_tag_element.getAttribute("href");
-		}
+		var result = this.find_link(direction_designator, qualifying_tags[j]);
+		if (result) return result;
 	}
 }
 
@@ -106,9 +100,9 @@ ImageLinkFinder.prototype.isPatternMatch = function(search_candidate, pattern) {
 		|| (pattern instanceof RegExp) && pattern.test(search_candidate)
 }
 ImageLinkFinder.prototype.find_direction_link = function(direction_designator) {
-	var anchor_tags = document.getElementsByTagName( "a" );
-	for (var i=0; i<anchor_tags.length; i++) {
-		var anchor_tag = anchor_tags[i];
+	var target_tags = document.getElementsByTagName( "a" );
+	for (var i=0; i<target_tags.length; i++) {
+		var anchor_tag = target_tags[i];
 		var anchor_tag_image_children = anchor_tag.getElementsByTagName( "img" );
 
 		for (var j=0; j<anchor_tag_image_children.length; j++) {
