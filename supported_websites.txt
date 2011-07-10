@@ -11,6 +11,7 @@ SUPPORTED WEBSITES:
 * Vanilla Forums (http://vanillaforums.org/)
 * http://www.reddit.com/
 * http://wikipedia.org/
+* 4chan.org
 
 
 UNSUPPORTED WEBSITES:

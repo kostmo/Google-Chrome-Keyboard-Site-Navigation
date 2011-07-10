@@ -14,6 +14,32 @@ SUPPORT
 See the files "supported_webcomics.txt" and "supported_websites.txt" for a list of sites that allow this extension to work by using the HTML5 "link relations" attributes.
 
 
+RELATED WORK
+==============================================================================
+Opera
+-----------------------
+The Opera browser sometimes works with inbuilt navigation, though unpredictably.
+It offeres a "navigation" toolbar, with the standard "rel" featureset. However,
+it doesn't work on qwantz.com.  It also advertises a "Fast Forward" feature, which
+is supposed to pre-load the "next" page in a series.
+
+It may be that Opera only supports the "rel" attribute on a <link> tag, whereas the
+HTML5 spec says it can appear in all of <link>, <a>, and <area>.  However, Opera does
+support moving to the "next" page on Reddit, although its Navigation toolbar remains disabled.
+
+Firefox
+-----------------------
+* https://bugzilla.mozilla.org/show_bug.cgi?id=192429
+
+
+TODO
+==============================================================================
+
+* Use single-arrow indicators, only use the left half of the icon for directions.
+Use right half for the "manual rule" indicator.
+
+* Test "shout-out" comics on http://www.qwantz.com/
+
 ISSUES
 ===============================================================================
 

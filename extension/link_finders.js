@@ -1,166 +1,124 @@
-function LinkRelationFinder() {
+function TextLinkFinder(prev_text, next_text) {
 
-	this.find_direction_link = function(direction_designator) {
-
-		// Search through the relevant tags to find the "rel" attribute with a value of "next" or "prev"
-		var qualifying_tags = ["link", "a", "area"];	// see http://www.whatwg.org/specs/web-apps/current-work/multipage/links.html#linkTypes
-
-		for (var j=0; j<qualifying_tags.length; j++) {
-			var tag_name = qualifying_tags[j];
-			var qualifying_tag_elements = document.getElementsByTagName( tag_name );
-			for (var i=0; i<qualifying_tag_elements.length; i++) {
-				var qualifying_tag_element = qualifying_tag_elements[i];
-				var rel_attribute = qualifying_tag_element.getAttribute("rel");
-				if (matching_expressions[direction_designator].test(rel_attribute))
-					return qualifying_tag_element.getAttribute("href");
-			}
-		}
-	}
+	this.navigation_patterns = {"prev": prev_text, "next": next_text};
 
 	this.get_prev_next_urls = function() {
-
 		var prev_next_urls_dict = {}
-
 		for (var direction_designator in navigation_urls) {
-			var direction_link = this.find_direction_link(direction_designator);
+			var direction_link = this.find_direction_link(direction_designator, this.getSubjectElementType());
 			if (direction_link)
 				prev_next_urls_dict[direction_designator] = direction_link;
 		}
-
 		return prev_next_urls_dict;
 	}
-}
 
-
-
-
-function ImageLinkFinder(prev_img, next_img) {
-	this.navigation_images = {
-		"prev": prev_img,
-		"next": next_img
-	}
-
-	this.find_direction_link = function(direction_designator) {
-		var anchor_tags = document.getElementsByTagName( "a" );
+	this.find_direction_link = function(direction_designator, subject_element) {
+		var anchor_tags = document.getElementsByTagName( subject_element );
 		for (var i=0; i<anchor_tags.length; i++) {
 			var anchor_tag = anchor_tags[i];
-			var anchor_tag_image_children = anchor_tag.getElementsByTagName( "img" );
+			var pattern = this.navigation_patterns[direction_designator];
 
-			for (var j=0; j<anchor_tag_image_children.length; j++) {
-				var image_tag = anchor_tag_image_children[j];
-
-				var search_candidate = image_tag.getAttribute("src");
-				var search_target = this.navigation_images[direction_designator];
-
-				if (
-					(typeof search_target == "string") && search_candidate == search_target
-					|| (search_target instanceof RegExp) && search_target.test(search_candidate)
-				)
-					return anchor_tag.getAttribute("href");
-			}
+			// XXX Note the extra check for whether the "href" attribute is empty/null
+			if (this.isPatternMatch(anchor_tag, pattern) && anchor_tag.getAttribute("href"))
+				return anchor_tag.getAttribute("href");
 		}
 	}
 
-	this.get_prev_next_urls = function() {
+	this.getSubjectText = function(element) {
+		return element.innerText;
+	}
 
-		var prev_next_urls_dict = {}
+	this.getSubjectElementType = function() {
+		return "a";
+	}
 
-		for (var direction_designator in navigation_urls) {
-			var direction_link = this.find_direction_link(direction_designator);
-			if (direction_link)
-				prev_next_urls_dict[direction_designator] = direction_link;
-		}
-
-		return prev_next_urls_dict;
+	this.isPatternMatch = function(anchor_tag, pattern) {
+		return this.getSubjectText(anchor_tag).indexOf(pattern) >= 0;
 	}
 }
 
 
-
-function TextLinkFinder(prev_text, next_text) {
-	this.navigation_texts = {
-		"prev": prev_text,
-		"next": next_text
-	}
-
-	this.get_prev_next_urls = function() {
-
-		var prev_next_urls_dict = {}
-		var anchor_tags = document.getElementsByTagName( "a" );
-
-		for (var direction_designator in navigation_urls) {
-			for (var i=0; i<anchor_tags.length; i++) {
-				var anchor_tag = anchor_tags[i];
-				var navigation_text = this.navigation_texts[direction_designator];
-
-				// XXX Note the extra check for whether the "href" attribute is empty/null
-				if (anchor_tag.innerText.indexOf(navigation_text) >= 0 && anchor_tag.getAttribute("href")) {
-					prev_next_urls_dict[direction_designator] = anchor_tag.getAttribute("href");
-					break;
-				}
-			}
-		}
-
-		return prev_next_urls_dict;
-	}
+function ImageMapLinkFinder(prev_text, next_text) {
+//	TextLinkFinder.call(this, prev_text, next_text);
+	this.navigation_patterns = {"prev": prev_text, "next": next_text};
+}
+ImageMapLinkFinder.prototype = new TextLinkFinder
+ImageMapLinkFinder.prototype.getSubjectText = function(element) {
+	return element.getAttribute("coords");
+}
+ImageMapLinkFinder.prototype.getSubjectElementType = function(element) {
+	return "area";
 }
 
 
-// TODO Combine this with TextLinkFinder
+
 function HtmlLinkFinder(prev_text, next_text) {
-	this.navigation_texts = {
-		"prev": prev_text,
-		"next": next_text
-	}
+	this.navigation_patterns = {"prev": prev_text, "next": next_text};
+}
+HtmlLinkFinder.prototype = new TextLinkFinder
+HtmlLinkFinder.prototype.getSubjectText = function(element) {
+	return element.innerHTML
+}
 
-	this.get_prev_next_urls = function() {
 
-		var prev_next_urls_dict = {}
-		var anchor_tags = document.getElementsByTagName( "a" );
 
-		for (var direction_designator in navigation_urls) {
-			for (var i=0; i<anchor_tags.length; i++) {
-				var anchor_tag = anchor_tags[i];
-				var navigation_text = this.navigation_texts[direction_designator];
-				if (anchor_tag.innerHTML.indexOf(navigation_text) >= 0) {
-					prev_next_urls_dict[direction_designator] = anchor_tag.getAttribute("href");
-					break;
-				}
-			}
+
+function LinkRelationFinder() {
+	this.navigation_patterns = matching_expressions;
+}
+LinkRelationFinder.prototype = new TextLinkFinder
+LinkRelationFinder.base = TextLinkFinder.prototype;
+LinkRelationFinder.prototype.getSubjectText = function(element) {
+	return element.getAttribute("rel");
+}
+LinkRelationFinder.prototype.isPatternMatch = function(anchor_tag, pattern) {
+	return pattern.test(this.getSubjectText(anchor_tag));
+}
+LinkRelationFinder.prototype.find_direction_link = function(direction_designator) {
+
+	// Search through the relevant tags to find the "rel" attribute with a value of "next" or "prev"
+	var qualifying_tags = ["link", "a", "area"];	// see http://www.whatwg.org/specs/web-apps/current-work/multipage/links.html#linkTypes
+
+	for (var j=0; j<qualifying_tags.length; j++) {
+		var tag_name = qualifying_tags[j];
+
+//		return LinkRelationFinder.base.find_direction_link.call(this, direction_designator, tag_name);
+//		return TextLinkFinder.find_direction_link.call(this, direction_designator, tag_name);
+
+		var qualifying_tag_elements = document.getElementsByTagName( tag_name );
+		for (var i=0; i<qualifying_tag_elements.length; i++) {
+			var qualifying_tag_element = qualifying_tag_elements[i];
+			var rel_attribute = this.getSubjectText(qualifying_tag_element);
+			if (this.navigation_patterns[direction_designator].test(rel_attribute))
+				return qualifying_tag_element.getAttribute("href");
 		}
-
-		return prev_next_urls_dict;
 	}
 }
 
 
 
-function ImageMapLinkFinder(prev_coords, next_coords) {
-	this.navigation_texts = {
-		"prev": prev_coords,
-		"next": next_coords
-	}
+function ImageLinkFinder(prev_text, next_text) {
+	this.navigation_patterns = {"prev": prev_text, "next": next_text};
+}
+ImageLinkFinder.prototype = new TextLinkFinder
+ImageLinkFinder.prototype.isPatternMatch = function(search_candidate, pattern) {
+	return (typeof pattern == "string") && search_candidate == pattern
+		|| (pattern instanceof RegExp) && pattern.test(search_candidate)
+}
+ImageLinkFinder.prototype.find_direction_link = function(direction_designator) {
+	var anchor_tags = document.getElementsByTagName( "a" );
+	for (var i=0; i<anchor_tags.length; i++) {
+		var anchor_tag = anchor_tags[i];
+		var anchor_tag_image_children = anchor_tag.getElementsByTagName( "img" );
 
-	this.get_prev_next_urls = function() {
+		for (var j=0; j<anchor_tag_image_children.length; j++) {
+			var image_tag = anchor_tag_image_children[j];
 
-		var prev_next_urls_dict = {}
-		var area_tags = document.getElementsByTagName( "area" );
+			var search_candidate = image_tag.getAttribute("src");
+			var search_target = this.navigation_patterns[direction_designator];
 
-		for (var direction_designator in navigation_urls) {
-			for (var i=0; i<area_tags.length; i++) {
-				var area_tag = area_tags[i];
-				var navigation_text = this.navigation_texts[direction_designator];
-				var area_tag_coords = area_tag.getAttribute("coords");
-
-				// XXX Note the extra check for whether the "href" attribute is empty/null
-				if (area_tag_coords == navigation_text && area_tag.getAttribute("href")) {
-					prev_next_urls_dict[direction_designator] = area_tag.getAttribute("href");
-					break;
-				}
-			}
+			if (this.isPatternMatch(search_candidate, search_target))
+				return anchor_tag.getAttribute("href");
 		}
-
-		return prev_next_urls_dict;
 	}
 }
-

@@ -58,6 +58,8 @@ var manual_site_overrides = {
 	"http://www.viruscomix.com/": new ImageLinkFinder("subprevious.gif", "subnext.gif"),
 	"http://www.plasticbrickautomaton.com/": new ImageLinkFinder("images/back.png", "images/next.png"),
 	"http://www.electricretard.com/": new ImageLinkFinder("http://www.electricretard.com/images/button_previous_off.png", "http://www.electricretard.com/images/button_next_off.png"),
+	"http://manga.clone-army.org/": new ImageLinkFinder("previous.gif", "next.gif"),
+
 
 	"http://www.smbc-comics.com/": new ImageMapLinkFinder("131,13,216,84", "351,21,425,87"),
 

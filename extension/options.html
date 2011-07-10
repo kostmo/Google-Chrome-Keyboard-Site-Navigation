@@ -35,15 +35,19 @@ function restore_options() {
 
 function list_manually_supported_comics() {
 	var container = document.getElementById("manual_support_list");
+	var count_container = document.getElementById("manual_support_count");
 
 	var html = "";
 	html += "<ul>";
+	var counter = 0;
 	for (var override_website in manual_site_overrides) {
 //		var link_finder = manual_site_overrides[override_website];
 		html += "<li><a href=\"" + override_website + "\">" + override_website + "</a></li>";
+		counter++;
 	}
 	html += "</ul>";
 
+	count_container.innerHTML = counter;
 	container.innerHTML = html;
 }
 
@@ -69,7 +73,7 @@ function init() {
 <li><a href="https://github.com/kostmo/Google-Chrome-Keyboard-Site-Navigation/raw/master/supported_websites.txt">Other websites</a></li>
 </ul>
 
-<h1>Manually-supported Sites</h1>
+<h1><span id="manual_support_count"></span> Manually-supported Sites</h1>
 <span id="manual_support_list"></span>
 
 </body>
