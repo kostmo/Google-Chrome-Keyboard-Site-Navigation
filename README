@@ -1,10 +1,14 @@
 INSTALLATION
 ===============================================================================
 
-To install from source, follow step 4 on this page:
+FROM SOURCE:
+Follow step 4 on this page:
 https://code.google.com/chrome/extensions/getstarted.html
 
-Otherwise, just install the extension directly from the Chrome web store:
+You must first run the script graphics/draw_icon_variants.py
+to generate the icons.
+
+FROM THE CHROME WEB STORE:
 https://chrome.google.com/webstore/detail/pkjjfohgdkeomfgelibonoddaaioaopg
 
 
