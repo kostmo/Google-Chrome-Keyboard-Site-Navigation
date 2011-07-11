@@ -1,5 +1,6 @@
 function TextLinkFinder(prev_text, next_text) {
 
+	this._className = "TextLinkFinder";
 	this.navigation_patterns = {"prev": prev_text, "next": next_text};
 
 	this.get_prev_next_urls = function() {
@@ -16,12 +17,12 @@ function TextLinkFinder(prev_text, next_text) {
 	this.find_link = function(direction_designator, subject_element) {
 		var target_tags = document.getElementsByTagName( subject_element );
 		for (var i=0; i<target_tags.length; i++) {
-			var anchor_tag = target_tags[i];
+			var tag_element = target_tags[i];
 			var pattern = this.navigation_patterns[direction_designator];
 
 			// XXX Note the extra check for whether the "href" attribute is empty/null
-			if (this.isPatternMatch(anchor_tag, pattern) && anchor_tag.getAttribute("href"))
-				return anchor_tag.getAttribute("href");
+			if (this.isPatternMatch(tag_element, pattern) && tag_element.getAttribute("href"))
+				return tag_element.getAttribute("href");
 		}
 	}
 
@@ -37,13 +38,24 @@ function TextLinkFinder(prev_text, next_text) {
 		return "a";
 	}
 
-	this.isPatternMatch = function(anchor_tag, pattern) {
-		return this.getSubjectText(anchor_tag).indexOf(pattern) >= 0;
+	this.isPatternMatch = function(tag_element, pattern) {
+		return this.getSubjectText(tag_element).indexOf(pattern) >= 0;
 	}
 }
 
+// ============================================================================
+function HtmlLinkFinder(prev_text, next_text) {
+	this._className = "HtmlLinkFinder";
+	this.navigation_patterns = {"prev": prev_text, "next": next_text};
+}
+HtmlLinkFinder.prototype = new TextLinkFinder
+HtmlLinkFinder.prototype.getSubjectText = function(element) {
+	return element.innerHTML
+}
 
+// ============================================================================
 function ImageMapLinkFinder(prev_text, next_text) {
+	this._className = "ImageMapLinkFinder";
 //	TextLinkFinder.call(this, prev_text, next_text);
 	this.navigation_patterns = {"prev": prev_text, "next": next_text};
 }
@@ -55,20 +67,9 @@ ImageMapLinkFinder.prototype.getSubjectElementType = function(element) {
 	return "area";
 }
 
-
-
-function HtmlLinkFinder(prev_text, next_text) {
-	this.navigation_patterns = {"prev": prev_text, "next": next_text};
-}
-HtmlLinkFinder.prototype = new TextLinkFinder
-HtmlLinkFinder.prototype.getSubjectText = function(element) {
-	return element.innerHTML
-}
-
-
-
-
+// ============================================================================
 function LinkRelationFinder() {
+	this._className = "LinkRelationFinder";
 	this.navigation_patterns = matching_expressions;
 }
 LinkRelationFinder.prototype = new TextLinkFinder
@@ -76,8 +77,8 @@ LinkRelationFinder.base = TextLinkFinder.prototype;
 LinkRelationFinder.prototype.getSubjectText = function(element) {
 	return element.getAttribute("rel");
 }
-LinkRelationFinder.prototype.isPatternMatch = function(anchor_tag, pattern) {
-	return pattern.test(this.getSubjectText(anchor_tag));
+LinkRelationFinder.prototype.isPatternMatch = function(tag_element, pattern) {
+	return pattern.test(this.getSubjectText(tag_element));
 }
 LinkRelationFinder.prototype.find_direction_link = function(direction_designator) {
 
@@ -89,9 +90,9 @@ LinkRelationFinder.prototype.find_direction_link = function(direction_designator
 	}
 }
 
-
-
+// ============================================================================
 function ImageLinkFinder(prev_text, next_text) {
+	this._className = "ImageLinkFinder";
 	this.navigation_patterns = {"prev": prev_text, "next": next_text};
 }
 ImageLinkFinder.prototype = new TextLinkFinder
@@ -102,17 +103,18 @@ ImageLinkFinder.prototype.isPatternMatch = function(search_candidate, pattern) {
 ImageLinkFinder.prototype.find_direction_link = function(direction_designator) {
 	var target_tags = document.getElementsByTagName( "a" );
 	for (var i=0; i<target_tags.length; i++) {
-		var anchor_tag = target_tags[i];
-		var anchor_tag_image_children = anchor_tag.getElementsByTagName( "img" );
+		var tag_element = target_tags[i];
+		var tag_element_image_children = tag_element.getElementsByTagName( "img" );
 
-		for (var j=0; j<anchor_tag_image_children.length; j++) {
-			var image_tag = anchor_tag_image_children[j];
+		for (var j=0; j<tag_element_image_children.length; j++) {
+			var image_tag = tag_element_image_children[j];
 
 			var search_candidate = image_tag.getAttribute("src");
 			var search_target = this.navigation_patterns[direction_designator];
 
+//			console.log("Candidate: " + search_candidate + "; Target: " + search_target);
 			if (this.isPatternMatch(search_candidate, search_target))
-				return anchor_tag.getAttribute("href");
+				return tag_element.getAttribute("href");
 		}
 	}
 }

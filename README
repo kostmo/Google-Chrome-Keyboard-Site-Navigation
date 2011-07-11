@@ -31,21 +31,20 @@ Firefox
 -----------------------
 * https://bugzilla.mozilla.org/show_bug.cgi?id=192429
 
-
 TODO
 ==============================================================================
 
+* Add support for subdirectories on matching sites
+    -> e.g. http://www.qwantz.com/apologies/
+
 * Use single-arrow indicators, only use the left half of the icon for directions.
 Use right half for the "manual rule" indicator.
-
-* Test "shout-out" comics on http://www.qwantz.com/
 
 ISSUES
 ===============================================================================
 
 Potentially a website might list multiple "next" or "prev" relations on a page. This may call for a special indicator in the icon.
-
-As one example, check out this page:
-http://www.nuklearpower.com/2010/06/01/the-epilogue/
-
-If you navigate forward, you will reach the next blog entry. If you then navigate backward, you will not return to the last panel of the webcomic, but will instead reach the previous blog entry by date.
+-> Examples
+    * http://nonadventures.com/2011/07/09/pick-your-battles/
+    * http://www.nuklearpower.com/2010/06/01/the-epilogue/
+        If you navigate forward, you will reach the next blog entry. If you then navigate backward, you will not return to the last panel of the webcomic, but will instead reach the previous blog entry by date.

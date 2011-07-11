@@ -32,7 +32,6 @@ function restore_options() {
   checkbox.checked = find_multiple_targets;
 }
 
-
 function list_manually_supported_comics() {
 	var container = document.getElementById("manual_support_list");
 	var count_container = document.getElementById("manual_support_count");
@@ -41,8 +40,9 @@ function list_manually_supported_comics() {
 	html += "<ul>";
 	var counter = 0;
 	for (var override_website in manual_site_overrides) {
-//		var link_finder = manual_site_overrides[override_website];
-		html += "<li><a href=\"" + override_website + "\">" + override_website + "</a></li>";
+		var link_finder = manual_site_overrides[override_website];
+		var object_type = link_finder._className;
+		html += "<li><a href=\"http://" + override_website + "\">" + override_website + "</a> - " + object_type + "</li>";
 		counter++;
 	}
 	html += "</ul>";
@@ -52,17 +52,56 @@ function list_manually_supported_comics() {
 }
 
 
+function get_regression_test_sample() {
+	var link_finder_type_representatives = {};
+	for (var override_website in manual_site_overrides) {
+		var link_finder = manual_site_overrides[override_website];
+		var object_type = link_finder._className;
+		if (object_type in link_finder_type_representatives) continue;
+		link_finder_type_representatives[object_type] = override_website;
+	}
+	return link_finder_type_representatives;
+}
+
+// Gathers one of each type of link finder
+function list_regression_test_comics() {
+
+	var link_finder_type_representatives = get_regression_test_sample();
+
+	var container = document.getElementById("regression_test_list");
+	var html = "";
+	html += "<ul>";
+	for (var object_type in link_finder_type_representatives) {
+		var override_website = link_finder_type_representatives[object_type];
+		html += "<li><a href=\"http://" + override_website + "\">" + override_website + "</a> - " + object_type + "</li>";
+	}
+	html += "</ul>";
+	container.innerHTML = html;
+}
+
 function init() {
 	restore_options();
 	list_manually_supported_comics();
+	list_regression_test_comics();
 }
 
+
+function open_regression_tabs() {
+	var link_finder_type_representatives = get_regression_test_sample();
+	for (var object_type in link_finder_type_representatives) {
+		var override_website = link_finder_type_representatives[object_type];
+		chrome.tabs.create({'url': "http://" + override_website}, function(tab) {
+			// Tab opened.
+		});
+	}
+}
 
 </script>
 
 <body onload="init()">
 
 <h1>Options</h1>
+
 <label><input type="checkbox" id="find_multiple_targets" />Allow searching for multiple next/prev targets (not currently used)</label>
 <br>
 <button onclick="save_options()">Save</button>
@@ -76,5 +115,8 @@ function init() {
 <h1><span id="manual_support_count"></span> Manually-supported Sites</h1>
 <span id="manual_support_list"></span>
 
+<h1>Regression test list</h1>
+<button onclick="open_regression_tabs()">Open all</button>
+<span id="regression_test_list"></span>
 </body>
 </html>

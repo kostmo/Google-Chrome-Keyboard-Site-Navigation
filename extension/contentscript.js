@@ -1,3 +1,8 @@
+String.prototype.endsWith = function(suffix) {
+    return this.indexOf(suffix, this.length - suffix.length) !== -1;
+};
+
+
 var LINK_RELATION_KEYS = ["prev", "next"];
 
 var recognition_type = null;
@@ -21,17 +26,16 @@ var navigation_keycodes = {
 // TODO Not used
 var find_multiple_targets = localStorage["find_multiple_targets"];
 
-function get_manual_override(url) {
+function get_manual_override(hostname) {
 	for (var site_url in manual_site_overrides)
-		if (url.indexOf(site_url) === 0)
+		if (hostname.endsWith(site_url))
 			return manual_site_overrides[site_url];
 
 	return false;
 }
 
-
 function find_links() {
-	var manual_linkfinder = get_manual_override(window.location.href);
+	var manual_linkfinder = get_manual_override(window.location.hostname);
 	if (manual_linkfinder) {
 		recognition_type = "manual";
 	} else {

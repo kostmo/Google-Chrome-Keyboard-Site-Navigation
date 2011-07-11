@@ -10,20 +10,19 @@
 	var recognition_type = request["recognition_type"];
 	var navigation_options = request["navigation_options"];
 
-	var icon_filename = "both_prev_next";
-	if (!navigation_options["next"].length)
-		icon_filename = "prev_only";
-	else if (!navigation_options["prev"].length)
-		icon_filename = "next_only";
-
+	var icon_filename_pieces = new Array();
 	if (recognition_type == "manual")
-		icon_filename += "_manual";
+		icon_filename_pieces.push("manual");
+	if (navigation_options["next"].length)
+		icon_filename_pieces.push("next");
+	if (navigation_options["prev"].length)
+		icon_filename_pieces.push("prev");
+	var icon_filename = icon_filename_pieces.join("_");
 
 	chrome.pageAction.setIcon({"path": "icons/" + icon_filename + ".png", "tabId": sender.tab.id})
 
         // Show the page action for the tab that the sender (content script) was on.
         chrome.pageAction.show(sender.tab.id);
-
 
         // Return nothing to let the connection be cleaned up.
         sendResponse({});

@@ -1,4 +1,4 @@
-This list reflects support as of 4/23/2011.
+This list reflects support as of July 10, 2011.
 
 Pester the website admin if they do not support this extension.
 If they already have clickable "next" and "previous" buttons", it involves only
@@ -10,13 +10,13 @@ SUPPORTED WEBSITES:
 * Wordpress blogs (https://wordpress.org/)
 * Vanilla Forums (http://vanillaforums.org/)
 * http://www.reddit.com/
-* http://wikipedia.org/
-* 4chan.org
+* MediaWiki wikis (e.g. http://wikipedia.org/)
+* Futaba Channel-style imageboards (e.g. 4chan.org)
+* http://thedailywtf.com
 
 
 UNSUPPORTED WEBSITES:
 =======================
-* http://thedailywtf.com
 * http://amazon.com
 * http://ebay.com
 * http://google.com (Seriously?)

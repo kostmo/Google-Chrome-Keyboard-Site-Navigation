@@ -48,6 +48,9 @@ INHERENTLY SUPPORTED WEBCOMICS (using the "rel" attribute):
 * http://kafkaskoffee.com/
 * http://amultiverse.com/
 * http://mgleim.com/apology/
+* http://www.bladediary.com/
+* http://amultiverse.com/
+* http://nonadventures.com/ (kind of broken)
 
 MANUALLY SUPPORTED WEBCOMICS:
 ======================
@@ -129,4 +132,5 @@ UNSUPPORTED WEBCOMICS (PRECLUDED BY SITE DESIGN):
 * http://www.nataliedee.com/
 * http://www.marriedtothesea.com/
 * http://www.superpoop.com/
+* http://www.bohemiandrive.com/comics/npwil.html
 
