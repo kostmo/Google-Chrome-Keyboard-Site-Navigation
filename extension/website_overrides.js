@@ -67,6 +67,7 @@ var manual_site_overrides = {
 	"electricretard.com": new ImageLinkFinder("electricretard.com/images/button_previous_off.png", "electricretard.com/images/button_next_off.png"),
 	"manga.clone-army.org": new ImageLinkFinder("previous.gif", "next.gif"),
 	"doobl.comicgenesis.com": new ImageLinkFinder("http://doobl.comicgenesis.com/images/previous_day.gif", "http://doobl.comicgenesis.com/images/next_day.gif"),
+	"corpseruncomics.com": new ImageLinkFinder("../../buttons/navprevious_norm.png", "../../buttons/navnext_norm.png"),
 
 	"smbc-comics.com": new ImageMapLinkFinder("131,13,216,84", "351,21,425,87"),
 

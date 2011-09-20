@@ -13,6 +13,7 @@ SUPPORTED WEBSITES:
 * MediaWiki wikis (e.g. http://wikipedia.org/)
 * Futaba Channel-style imageboards (e.g. 4chan.org)
 * http://thedailywtf.com
+* Python docs (e.g. http://docs.python.org/reference/compound_stmts.html)
 
 
 UNSUPPORTED WEBSITES:

@@ -116,6 +116,7 @@ MANUALLY SUPPORTED WEBCOMICS:
 * http://oglaf.com/
 * http://deadwinter.cc/
 * http://manga.clone-army.org/
+* http://corpseruncomics.com/
 
 UNSUPPORTED WEBCOMICS:
 =================================================
