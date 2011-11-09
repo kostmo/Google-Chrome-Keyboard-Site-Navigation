@@ -91,6 +91,39 @@ LinkRelationFinder.prototype.find_direction_link = function(direction_designator
 }
 
 // ============================================================================
+function LinkHeuristicFinder() {
+	this._className = "LinkHeuristicFinder";
+	this.navigation_patterns = matching_expressions;
+}
+LinkHeuristicFinder.prototype = new TextLinkFinder
+LinkHeuristicFinder.base = TextLinkFinder.prototype;
+LinkHeuristicFinder.prototype.getSubjectText = function(element) {
+	return element.getAttribute("rel");
+}
+LinkHeuristicFinder.prototype.isPatternMatch = function(tag_element, pattern) {
+	return pattern.test(this.getSubjectText(tag_element));
+}
+LinkHeuristicFinder.prototype.find_direction_link = function(direction_designator) {
+
+	var regex_dict = {"next": new RegExp("next", "i"), "prev": new RegExp("prev", "i")};
+	var pattern = regex_dict[direction_designator];
+
+//	alert(pattern.test("next page"));
+
+	var target_tags = document.getElementsByTagName("a");
+	for (var i=0; i<target_tags.length; i++) {
+		var tag_element = target_tags[i];
+		if (tag_element.getAttribute("href")) {
+//			console.log("Testing " + tag_element.innerText);
+			if ( pattern.test(tag_element.innerText) ) {
+//				console.log("Found the word \"" + direction_designator + "\" in " + tag_element.innerText);
+				return tag_element.getAttribute("href");
+			}
+		}
+	}
+}
+
+// ============================================================================
 function ImageLinkFinder(prev_text, next_text) {
 	this._className = "ImageLinkFinder";
 	this.navigation_patterns = {"prev": prev_text, "next": next_text};

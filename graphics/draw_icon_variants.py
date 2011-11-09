@@ -1,13 +1,19 @@
 #!/usr/bin/env python
 
-from math import sqrt
+from math import sqrt, pi
 import cairo
 
 image_side_pixel_count = 19
+#image_side_pixel_count = 200
 output_dir = "../extension/icons"
 
+right_arrow_color = (0.2, 0.8, 0.5)
+left_arrow_color = (0.9, 0.5, 0.2)
+plus_sign_color = (0, 0, 0)
+circle_color = (0.5, 0.2, 0.8)
+
 def backward_arrow(ctx):
-	ctx.set_source_rgb(0.9, 0.5, 0.2) # Solid color
+	ctx.set_source_rgb( *left_arrow_color ) # Solid color
 	ctx.set_line_width(0.2)
 
 	ctx.save()
@@ -27,7 +33,7 @@ def backward_arrow(ctx):
 def forward_arrow(ctx):
 	# TODO Use a decorator to scale and translate appropriately
 	ctx.set_line_width(0.2)
-	ctx.set_source_rgb(0.2, 0.8, 0.5) # Solid color
+	ctx.set_source_rgb( *right_arrow_color ) # Solid color
 
 	ctx.save()
 	ctx.translate(0.6, 0.1)
@@ -57,11 +63,29 @@ def plus_sign(ctx):
 	ctx.save()
 	ctx.translate(0.1, 0.1)
 	ctx.scale(0.3, 0.3)
-	ctx.set_source_rgb(0, 0, 0) # Solid color
+	ctx.set_source_rgb( *plus_sign_color ) # Solid color
 	unit_plus_sign(ctx)
 	ctx.restore()
 
+def unit_circle(ctx):
+	ctx.arc(0, 0, 0.5, 0, 2*pi)
+
+def circle(ctx):
+
+	ctx.set_line_width(0.1/0.3)
+
+	ctx.save()
+	ctx.translate(0.25, 0.75)
+	ctx.scale(0.3, 0.3)
+
+	unit_circle(ctx)
+	ctx.set_source_rgb( *circle_color ) # Solid color
+	ctx.stroke()
+
+	ctx.restore()
+
 keywords = {
+	"guess": circle,
 	"manual": plus_sign,
 	"prev": backward_arrow,
 	"next": forward_arrow,

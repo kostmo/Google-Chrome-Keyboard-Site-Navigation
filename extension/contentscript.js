@@ -34,6 +34,10 @@ function get_manual_override(hostname) {
 	return false;
 }
 
+/*	Give precedence to manually-specified website overrides.
+	If that doesn'ts work, use built-in "link relation" tags.
+	If that doesn't work, search link text for "next" or "previous".
+*/
 function find_links() {
 	var manual_linkfinder = get_manual_override(window.location.hostname);
 	if (manual_linkfinder) {
@@ -44,8 +48,29 @@ function find_links() {
 	}
 
 	var prevnext = manual_linkfinder.get_prev_next_urls();
-	for (var direction_designator in prevnext)
+
+	var found_links = false;
+	for (var direction_designator in prevnext) {
+		found_links = true;
 		navigation_urls[direction_designator].push( prevnext[direction_designator] );
+	}
+
+	if (!found_links) {
+
+		var linkfinder = new LinkHeuristicFinder();
+		var prevnext = linkfinder.get_prev_next_urls();
+
+		for (var direction_designator in prevnext) {
+			found_links = true;
+			navigation_urls[direction_designator].push( prevnext[direction_designator] );
+		}
+
+		if (found_links) {
+			recognition_type = "guess";
+		}
+	}
+
+	console.log("Done.");
 }
 
 

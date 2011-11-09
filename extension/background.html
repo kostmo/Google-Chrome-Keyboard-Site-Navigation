@@ -13,10 +13,15 @@
 	var icon_filename_pieces = new Array();
 	if (recognition_type == "manual")
 		icon_filename_pieces.push("manual");
+	else if (recognition_type == "guess")
+		icon_filename_pieces.push("guess");
+
 	if (navigation_options["next"].length)
 		icon_filename_pieces.push("next");
 	if (navigation_options["prev"].length)
 		icon_filename_pieces.push("prev");
+
+	icon_filename_pieces.sort();
 	var icon_filename = icon_filename_pieces.join("_");
 
 	chrome.pageAction.setIcon({"path": "icons/" + icon_filename + ".png", "tabId": sender.tab.id})
