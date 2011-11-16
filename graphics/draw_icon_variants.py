@@ -3,8 +3,8 @@
 from math import sqrt, pi
 import cairo
 
-image_side_pixel_count = 19
-#image_side_pixel_count = 200
+#image_side_pixel_count = 19
+image_side_pixel_count = 200
 output_dir = "../extension/icons"
 
 right_arrow_color = (0.2, 0.8, 0.5)
@@ -83,6 +83,36 @@ def circle(ctx):
 	ctx.stroke()
 
 	ctx.restore()
+
+	question_mark(ctx)
+
+def question_mark(ctx):
+
+	qmark_character = "?"
+
+
+	ctx.set_source_rgb(0.1, 0.1, 0.1)
+#	ctx.select_font_face("Purisa", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)
+	ctx.set_font_size(1)
+	(x_bearing, y_bearing, width, height, x_advance, y_advance) = ctx.text_extents( qmark_character )
+
+	print "Width:", width, "Height:", height
+#	ctx.move_to(0.4, 1)
+	target_scale = max(width, height)
+
+	ctx.save()
+	ctx.scale(1/target_scale, 1/target_scale)
+
+
+	ctx.translate(((1 - width)/target_scale)/2, 0)
+
+	ctx.show_text( qmark_character )
+
+	ctx.restore()
+
+
+
+
 
 keywords = {
 	"guess": circle,
