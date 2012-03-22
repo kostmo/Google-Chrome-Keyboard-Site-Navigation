@@ -80,10 +80,14 @@ function find_links() {
 * may present a list to choose between them.
 */
 function keyListener(e) {
-	if (e.ctrlKey)
-		for (var direction_designator in navigation_urls)
-			if (e.keyCode == navigation_keycodes[direction_designator] && navigation_urls[direction_designator].length)
-				window.location = navigation_urls[direction_designator][0];	// Uses the first one encountered
+
+//	console.log("Tagname: " + document.activeElement.tagName);
+
+	if (["TEXTAREA", "INPUT"].indexOf(document.activeElement.tagName) < 0)
+		if (e.ctrlKey)
+			for (var direction_designator in navigation_urls)
+				if (e.keyCode == navigation_keycodes[direction_designator] && navigation_urls[direction_designator].length)
+					window.location = navigation_urls[direction_designator][0];	// Uses the first one encountered
 }
 
 
@@ -93,6 +97,7 @@ find_links();
 
 // If either the "next" or "prev" is defined, show the URL bar icon and enable the keyboard shortcuts
 if ( LINK_RELATION_KEYS.some( function(element, index, array) {return navigation_urls[element].length;} ) ) {
+
 
 	var response_dict = {};
 	response_dict["recognition_type"] = recognition_type;

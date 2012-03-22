@@ -3,8 +3,8 @@
 from math import sqrt, pi
 import cairo
 
-#image_side_pixel_count = 19
-image_side_pixel_count = 200
+image_side_pixel_count = 19
+#image_side_pixel_count = 200
 output_dir = "../extension/icons"
 
 right_arrow_color = (0.2, 0.8, 0.5)

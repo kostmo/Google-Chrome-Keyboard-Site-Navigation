@@ -105,19 +105,24 @@ LinkHeuristicFinder.prototype.isPatternMatch = function(tag_element, pattern) {
 }
 LinkHeuristicFinder.prototype.find_direction_link = function(direction_designator) {
 
-	var regex_dict = {"next": new RegExp("next", "i"), "prev": new RegExp("prev", "i")};
-	var pattern = regex_dict[direction_designator];
+	var directional_synonyms = {
+		"next": ["next", "forward", "ahead", ">"],
+		"prev": ["prev", "back", "reverse", "<"]};
 
-//	alert(pattern.test("next page"));
+	var synonym_list = directional_synonyms[direction_designator];
 
 	var target_tags = document.getElementsByTagName("a");
 	for (var i=0; i<target_tags.length; i++) {
 		var tag_element = target_tags[i];
 		if (tag_element.getAttribute("href")) {
 //			console.log("Testing " + tag_element.innerText);
-			if ( pattern.test(tag_element.innerText) ) {
-//				console.log("Found the word \"" + direction_designator + "\" in " + tag_element.innerText);
-				return tag_element.getAttribute("href");
+
+			for (var j=0; j<synonym_list.length; j++) {
+				var synonym_regexp = new RegExp(synonym_list[j], "i");	// Case-insensitive matching
+				if ( synonym_regexp.test(tag_element.innerText) ) {
+//					console.log("Found the word \"" + direction_designator + "\" in " + tag_element.innerText);
+					return tag_element.getAttribute("href");
+				}
 			}
 		}
 	}
