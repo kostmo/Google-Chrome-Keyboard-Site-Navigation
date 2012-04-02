@@ -69,8 +69,6 @@ function find_links() {
 			recognition_type = "guess";
 		}
 	}
-
-	console.log("Done.");
 }
 
 
