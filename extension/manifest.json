@@ -1,6 +1,6 @@
 {
   "name" : "Webcomic Browser with Arrow Key Navigation",
-  "version" : "1.3",
+  "version" : "1.4",
   "description" : "Enables left/right arrow keys for paging through comics. Works automatically for pages that use \"next\" or \"previous\" relations.",
   "background_page" : "background.html",
   "options_page": "options.html",
