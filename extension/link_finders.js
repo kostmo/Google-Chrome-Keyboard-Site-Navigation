@@ -106,8 +106,8 @@ LinkHeuristicFinder.prototype.isPatternMatch = function(tag_element, pattern) {
 LinkHeuristicFinder.prototype.find_direction_link = function(direction_designator) {
 
 	var directional_synonyms = {
-		"next": ["next", "forward", "ahead", ">"],
-		"prev": ["prev", "back", "reverse", "<"]};
+		"next": ["next", "forward", "ahead", ">", "older"],
+		"prev": ["prev", "back", "reverse", "<", "newer"]};
 
 	var synonym_list = directional_synonyms[direction_designator];
 
