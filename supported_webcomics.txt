@@ -117,6 +117,8 @@ MANUALLY SUPPORTED WEBCOMICS:
 * http://deadwinter.cc/
 * http://manga.clone-army.org/
 * http://corpseruncomics.com/
+* http://reallifecomics.com/
+* http://www.giantitp.com/
 
 UNSUPPORTED WEBCOMICS:
 =================================================
