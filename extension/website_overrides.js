@@ -68,6 +68,8 @@ var manual_site_overrides = {
 	"manga.clone-army.org": new ImageLinkFinder("previous.gif", "next.gif"),
 	"doobl.comicgenesis.com": new ImageLinkFinder("http://doobl.comicgenesis.com/images/previous_day.gif", "http://doobl.comicgenesis.com/images/next_day.gif"),
 	"corpseruncomics.com": new ImageLinkFinder("../../buttons/navprevious_norm.png", "../../buttons/navnext_norm.png"),
+	"giantitp.com": new ImageLinkFinder("/Images/redesign/ComicNav_Back.gif", "/Images/redesign/ComicNav_Next.gif"),
+	"reallifecomics.com": new ImageLinkFinder("/images/nav_prev.png", "/images/nav_next.png"),
 
 	"smbc-comics.com": new ImageMapLinkFinder("131,13,216,84", "351,21,425,87"),
 
