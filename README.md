@@ -1,5 +1,5 @@
 INSTALLATION
-===============================================================================
+============
 
 FROM SOURCE:
 Follow step 4 on this page:
@@ -13,13 +13,13 @@ https://chrome.google.com/webstore/detail/pkjjfohgdkeomfgelibonoddaaioaopg
 
 
 SUPPORT
-===============================================================================
+=======
 
 See the files "supported_webcomics.txt" and "supported_websites.txt" for a list of sites that allow this extension to work by using the HTML5 "link relations" attributes.
 
 
 RELATED WORK
-==============================================================================
+============
 Opera
 -----------------------
 The Opera browser sometimes works with inbuilt navigation, though unpredictably.
@@ -36,7 +36,7 @@ Firefox
 * https://bugzilla.mozilla.org/show_bug.cgi?id=192429
 
 TODO
-==============================================================================
+=====
 
 * Add support for subdirectories on matching sites
     -> e.g. http://www.qwantz.com/apologies/
@@ -45,7 +45,7 @@ TODO
 Use right half for the "manual rule" indicator.
 
 ISSUES
-===============================================================================
+======
 
 Potentially a website might list multiple "next" or "prev" relations on a page. This may call for a special indicator in the icon.
 -> Examples
